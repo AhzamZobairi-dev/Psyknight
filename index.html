@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PSYKNIGHT – GenAI Solutions &amp; AI Education for Everyone</title>
+  <meta name="description" content="PSYKNIGHT is an early-stage Generative AI brand building practical AI solutions — starting with AI translation of classical Arabic Islamic texts — and teaching AI skills to underprivileged learners." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="PSYKNIGHT – GenAI Solutions &amp; AI Education for Everyone" />
+  <meta property="og:description" content="Building practical GenAI solutions and teaching AI skills to underprivileged learners. Early-stage, in development." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://psyknight.in" />
+  <meta property="og:site_name" content="PSYKNIGHT" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="PSYKNIGHT – GenAI Solutions &amp; AI Education for Everyone" />
+  <meta name="twitter:description" content="Building practical GenAI solutions and teaching AI skills to underprivileged learners." />
+
+  <style>
+    /* ============================================================
+       BASE RESET & TOKENS
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #08090e;
+      --bg2:       #0c0d16;
+      --bg3:       #101120;
+
+      /* Gold accent */
+      --gold:      #c8a84b;
+      --gold-lt:   #e6c76a;
+      --gold-a12:  rgba(200,168,75,0.12);
+      --gold-a22:  rgba(200,168,75,0.22);
+      --gold-a40:  rgba(200,168,75,0.40);
+
+      /* Teal accent (secondary) */
+      --teal:      #2dd4bf;
+      --teal-a10:  rgba(45,212,191,0.10);
+      --teal-a22:  rgba(45,212,191,0.22);
+
+      --white:     #eeeae4;
+      --muted:     #72708a;
+      --border:    rgba(255,255,255,0.06);
+      --card:      rgba(255,255,255,0.025);
+
+      --r:         14px;
+      --t:         0.25s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                   Oxygen, Ubuntu, Cantarell, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.05rem 2rem;
+      background: rgba(8,9,14,0.88);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-brand {
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.24em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-list a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      transition: color var(--t);
+    }
+    .nav-list a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--gold) !important;
+      color: #09090f !important;
+      padding: 0.4rem 1.05rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.76rem !important;
+      letter-spacing: 0.07em !important;
+      transition: background var(--t), transform var(--t) !important;
+    }
+    .nav-cta:hover {
+      background: var(--gold-lt) !important;
+      color: #09090f !important;
+      transform: translateY(-1px);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: var(--t);
+    }
+
+    /* ============================================================
+       SHARED LAYOUT
+    ============================================================ */
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    section { padding: 6rem 2rem; }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.18;
+      margin-bottom: 0.85rem;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 520px;
+      margin-bottom: 3.5rem;
+      line-height: 1.75;
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      min-height: 100svh;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Dot-grid background */
+    .hero-dots {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(200,168,75,0.18) 1px, transparent 1px);
+      background-size: 36px 36px;
+      pointer-events: none;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    }
+
+    /* Ambient glow */
+    .hero-glow {
+      position: absolute;
+      top: -10%;
+      left: -15%;
+      width: 60%;
+      height: 70%;
+      background: radial-gradient(ellipse, rgba(200,168,75,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-glow-r {
+      position: absolute;
+      bottom: -10%;
+      right: -10%;
+      width: 45%;
+      height: 55%;
+      background: radial-gradient(ellipse, rgba(45,212,191,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ترجمة = translation — decorative Arabic calligraphy-inspired word */
+    .hero-arabic {
+      position: absolute;
+      right: -1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: clamp(8rem, 22vw, 20rem);
+      line-height: 1;
+      color: rgba(200,168,75,0.04);
+      pointer-events: none;
+      user-select: none;
+      font-family: 'Arabic Typesetting', 'Noto Naskh Arabic',
+                   'Traditional Arabic', 'Scheherazade New', serif;
+    }
+
+    .hero-inner { position: relative; z-index: 1; }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: var(--gold-a12);
+      border: 1px solid var(--gold-a22);
+      border-radius: 100px;
+      padding: 0.32rem 0.9rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.28; transform: scale(0.72); }
+    }
+
+    .hero-name {
+      font-size: clamp(3.2rem, 9.5vw, 7.2rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 0.94;
+      background: linear-gradient(145deg, #ffffff 0%, #f2ca7c 48%, #c8a84b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.35rem;
+    }
+
+    .hero-tag {
+      font-size: clamp(1rem, 2.2vw, 1.22rem);
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 2.6rem;
+      line-height: 1.74;
+    }
+    .hero-tag strong { color: var(--white); font-weight: 500; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: var(--gold);
+      color: #08090e;
+      text-decoration: none;
+      padding: 0.86rem 2rem;
+      border-radius: 8px;
+      font-size: 0.93rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: background var(--t), transform var(--t), box-shadow var(--t);
+      box-shadow: 0 0 36px rgba(200,168,75,0.28);
+    }
+    .btn-primary:hover {
+      background: var(--gold-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 52px rgba(200,168,75,0.44);
+    }
+    .btn-primary:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+    .btn-arrow { display: inline-block; transition: transform var(--t); }
+    .btn-primary:hover .btn-arrow { transform: translateX(5px); }
+
+    /* Scroll cue */
+    .scroll-cue {
+      position: absolute;
+      bottom: 1.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      animation: float 2.4s ease-in-out infinite;
+    }
+    .scroll-cue-line {
+      width: 1px;
+      height: 28px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(7px); }
+    }
+
+    /* ============================================================
+       OUR MISSION
+    ============================================================ */
+    #mission {
+      background: var(--bg2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #mission::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(200,168,75,0.05) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .mission-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .m-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 2.2rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--t), transform var(--t), box-shadow var(--t);
+    }
+
+    /* Gold card */
+    .m-card.gold-card::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    /* Teal card */
+    .m-card.teal-card::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--teal), transparent);
+    }
+
+    .m-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 52px rgba(0,0,0,0.55);
+    }
+    .gold-card:hover { border-color: var(--gold-a22); }
+    .teal-card:hover { border-color: var(--teal-a22); }
+
+    .m-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1.1rem;
+      display: block;
+    }
+
+    .m-card h3 {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.65rem;
+    }
+
+    .m-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .m-tag {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.18rem 0.6rem;
+      border-radius: 4px;
+    }
+    .gold-tag {
+      color: var(--gold);
+      background: var(--gold-a12);
+      border: 1px solid var(--gold-a22);
+    }
+    .teal-tag {
+      color: var(--teal);
+      background: var(--teal-a10);
+      border: 1px solid var(--teal-a22);
+    }
+
+    /* ============================================================
+       FLAGSHIP PROJECT
+    ============================================================ */
+    #flagship { position: relative; }
+
+    #flagship::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(45,212,191,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Arabic deco inside flagship */
+    .arabic-deco {
+      display: block;
+      font-size: 4rem;
+      line-height: 1;
+      color: rgba(200,168,75,0.18);
+      margin-bottom: 1.8rem;
+      font-family: 'Arabic Typesetting', 'Noto Naskh Arabic',
+                   'Traditional Arabic', 'Scheherazade New', serif;
+      letter-spacing: 0.05em;
+    }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      margin-top: 0.5rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+      transition: border-color var(--t);
+    }
+    .feature-item:hover { border-color: var(--gold-a22); }
+
+    .feature-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .feature-item h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .feature-item p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.68;
+    }
+
+    .disclaimer {
+      margin-top: 1.8rem;
+      padding: 1rem 1.4rem;
+      background: var(--gold-a12);
+      border: 1px solid var(--gold-a22);
+      border-radius: 8px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .disclaimer strong { color: var(--gold); font-weight: 600; }
+
+    /* ============================================================
+       HOW WE WORK
+    ============================================================ */
+    #how {
+      background: var(--bg2);
+      position: relative;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 2rem;
+    }
+
+    .step { display: flex; flex-direction: column; gap: 1rem; }
+
+    .step-num {
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--gold-a12);
+      border: 1px solid var(--gold-a22);
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .step h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.35rem;
+    }
+
+    .step p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ============================================================
+       ROADMAP
+    ============================================================ */
+    #roadmap { position: relative; }
+
+    .timeline { display: flex; flex-direction: column; }
+
+    .tl-row {
+      display: flex;
+      gap: 1.6rem;
+      align-items: stretch;
+    }
+
+    .tl-track {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      width: 1rem;
+    }
+
+    .tl-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: var(--bg);
+      box-shadow: 0 0 12px var(--gold-a40);
+      flex-shrink: 0;
+      margin-top: 1.5rem;
+    }
+
+    .tl-line {
+      width: 2px;
+      flex: 1;
+      background: linear-gradient(to bottom, rgba(200,168,75,0.3), rgba(200,168,75,0.06));
+      margin-top: 4px;
+      margin-bottom: -4px;
+    }
+
+    .tl-row:last-child .tl-line { display: none; }
+
+    .phase {
+      flex: 1;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.35rem 1.7rem;
+      margin-bottom: 1.2rem;
+      transition: border-color var(--t), box-shadow var(--t);
+    }
+    .phase:hover {
+      border-color: var(--gold-a22);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .p-tag {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-a12);
+      border: 1px solid rgba(200,168,75,0.2);
+      border-radius: 4px;
+      padding: 0.15rem 0.5rem;
+    }
+
+    .phase h3 {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .phase p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.68;
+    }
+
+    /* ============================================================
+       CONTACT
+    ============================================================ */
+    #contact {
+      background: var(--bg2);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    #contact::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(200,168,75,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .contact-box {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .contact-box .lead {
+      margin: 0 auto 2.2rem;
+      max-width: 100%;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--gold);
+      font-size: 1.05rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200,168,75,0.3);
+      padding-bottom: 2px;
+      transition: color var(--t), border-color var(--t);
+    }
+    .contact-link:hover { color: var(--gold-lt); border-color: var(--gold-lt); }
+    .contact-link:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .foot-brand {
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.24em;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    footer p { font-size: 0.77rem; color: var(--muted); line-height: 1.85; }
+
+    /* ============================================================
+       REVEAL ANIMATION
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.62s ease, transform 0.62s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.18s; }
+    .d3 { transition-delay: 0.28s; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.2rem; }
+
+      .nav-list {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        background: rgba(8,9,14,0.97);
+        border-bottom: 1px solid var(--border);
+        padding: 0.5rem 0;
+        gap: 0;
+      }
+      .nav-list.open { display: flex; }
+      .nav-list li { width: 100%; }
+      .nav-list a { display: block; padding: 0.85rem 1.4rem; font-size: 0.92rem; }
+      .nav-cta { margin: 0.4rem 1.4rem 0.8rem; display: inline-block; width: auto; }
+
+      .hamburger { display: flex; }
+
+      section { padding: 5rem 1.2rem; }
+
+      .hero-arabic { right: -4rem; }
+      .scroll-cue { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-arabic { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <nav aria-label="Main navigation">
+    <a href="#hero" class="nav-brand" aria-label="PSYKNIGHT – go to top">PSYKNIGHT</a>
+
+    <ul class="nav-list" id="nav-list" role="list">
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#flagship">Flagship</a></li>
+      <li><a href="#how">How We Work</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+
+    <button
+      class="hamburger"
+      id="hamburger"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="nav-list"
+    >
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero" aria-label="PSYKNIGHT – hero">
+    <div class="hero-dots" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-glow-r" aria-hidden="true"></div>
+
+    <!-- ترجمة (tarjama) = "translation" — decorative Unicode Arabic word -->
+    <div class="hero-arabic" aria-hidden="true" dir="rtl" lang="ar">ترجمة</div>
+
+    <div class="container hero-inner">
+      <div class="hero-pill" role="status" aria-label="Status: early stage, in development">
+        <span class="pill-dot" aria-hidden="true"></span>
+        Early Stage · In Development
+      </div>
+
+      <h1 class="hero-name">PSYKNIGHT</h1>
+
+      <p class="hero-tag">
+        <strong>Practical GenAI solutions</strong> — starting with AI translation
+        of classical Islamic texts — and <strong>free AI education</strong> for
+        learners who need it most.
+      </p>
+
+      <a href="#contact" class="btn-primary" aria-label="Contact PSYKNIGHT">
+        Contact Us
+        <span class="btn-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true">
+      <div class="scroll-cue-line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ===== OUR MISSION ===== -->
+  <section id="mission" aria-labelledby="mission-h">
+    <div class="container">
+      <span class="eyebrow reveal">Our Mission</span>
+      <h2 id="mission-h" class="reveal d1">Two missions.<br />One brand.</h2>
+      <p class="lead reveal d2">
+        We are building at the intersection of AI capability and human need —
+        applying Generative AI where it can create real, lasting value.
+      </p>
+
+      <div class="mission-cards">
+        <article class="m-card gold-card reveal d1">
+          <span class="m-icon" aria-hidden="true">🔬</span>
+          <h3>GenAI Solutions</h3>
+          <p>
+            Building practical Generative AI tools, beginning with AI-assisted
+            translation of classical Arabic Islamic texts into English and then Urdu.
+            We use efficient, open language models and combine automated outputs with
+            careful human and scholarly review.
+          </p>
+          <span class="m-tag gold-tag">In Development</span>
+        </article>
+
+        <article class="m-card teal-card reveal d2">
+          <span class="m-icon" aria-hidden="true">🎓</span>
+          <h3>AI Education for the Underprivileged</h3>
+          <p>
+            Planning free and low-cost AI learning content for learners who cannot
+            access expensive courses or programmes. We believe everyone deserves the
+            chance to understand, use, and build with AI — regardless of background
+            or income.
+          </p>
+          <span class="m-tag teal-tag">Planned</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FLAGSHIP PROJECT ===== -->
+  <section id="flagship" aria-labelledby="flagship-h">
+    <div class="container">
+      <span class="eyebrow reveal">Flagship Project</span>
+      <h2 id="flagship-h" class="reveal d1">AI Translation of<br />Classical Arabic Islamic Texts</h2>
+      <p class="lead reveal d2">
+        We are developing a pipeline to translate classical Arabic Islamic literature
+        into English, then Urdu — making centuries of scholarship more accessible
+        to readers worldwide.
+      </p>
+
+      <!-- Decorative Arabic word: ترجمة = "translation" -->
+      <span class="arabic-deco reveal" dir="rtl" lang="ar" aria-label="Arabic word: tarjama (translation)">ترجمة</span>
+
+      <div class="feature-list">
+        <div class="feature-item reveal d1">
+          <span class="feature-icon" aria-hidden="true">⚙️</span>
+          <div>
+            <h4>Efficient Open Language Models</h4>
+            <p>
+              We are building with open, efficient AI language models chosen for their
+              performance on Arabic and classical text — keeping our process transparent
+              and avoiding dependence on any single proprietary provider.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-item reveal d2">
+          <span class="feature-icon" aria-hidden="true">📚</span>
+          <div>
+            <h4>Human &amp; Scholarly Review</h4>
+            <p>
+              All AI-generated translations will undergo human review and, for religious
+              or jurisprudential content, review by qualified Islamic scholars.
+              We do not claim religious authority; translations are AI-assisted drafts
+              that will be reviewed before being presented as reliable.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-item reveal d3">
+          <span class="feature-icon" aria-hidden="true">🌍</span>
+          <div>
+            <h4>Free Access — Planned for Learners</h4>
+            <p>
+              We plan to make translated content freely available, particularly for
+              students and learners who cannot afford paid resources, as part of
+              our broader commitment to open access.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p class="disclaimer reveal">
+        <strong>Note:</strong> This project is in early development. No translations have
+        been published yet. All future content will be clearly labelled as AI-assisted
+        and will carry reviewer attribution where applicable.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== HOW WE WORK ===== -->
+  <section id="how" aria-labelledby="how-h">
+    <div class="container">
+      <span class="eyebrow reveal">How We Work</span>
+      <h2 id="how-h" class="reveal d1">From manuscript<br />to reviewed translation</h2>
+      <p class="lead reveal d2">
+        A careful pipeline that combines the speed of AI with the precision of
+        human and scholarly expertise.
+      </p>
+
+      <div class="steps">
+        <div class="step reveal d1">
+          <div class="step-num" aria-hidden="true">1</div>
+          <div>
+            <h3>Digitised Text In</h3>
+            <p>
+              Classical Arabic source texts are digitised and prepared, preserving
+              original structure, diacritics, and scholarly annotations ready for
+              processing.
+            </p>
+          </div>
+        </div>
+
+        <div class="step reveal d2">
+          <div class="step-num" aria-hidden="true">2</div>
+          <div>
+            <h3>AI Translation &amp; Automated Checks</h3>
+            <p>
+              Multiple language model outputs are generated and compared. Automated
+              checks flag inconsistencies in terminology, grammar, and meaning
+              before human review.
+            </p>
+          </div>
+        </div>
+
+        <div class="step reveal d3">
+          <div class="step-num" aria-hidden="true">3</div>
+          <div>
+            <h3>Human Review &amp; Publishing</h3>
+            <p>
+              Qualified reviewers — and scholars for religious content — assess,
+              correct, and approve translations. Only reviewed content will be
+              published and clearly attributed.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ROADMAP ===== -->
+  <section id="roadmap" aria-labelledby="roadmap-h">
+    <div class="container">
+      <span class="eyebrow reveal">Roadmap</span>
+      <h2 id="roadmap-h" class="reveal d1">Planned phases</h2>
+      <p class="lead reveal d2">
+        Our development is phased and honest — we will only claim progress
+        when it has actually been made.
+      </p>
+
+      <div class="timeline">
+        <div class="tl-row reveal">
+          <div class="tl-track" aria-hidden="true">
+            <div class="tl-dot"></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="phase">
+            <div class="phase-header">
+              <span class="p-tag">Phase 1</span>
+              <h3>Arabic → English Translation</h3>
+            </div>
+            <p>
+              Building the core AI translation pipeline for Classical Arabic to English,
+              with human and scholarly review, targeting key texts in Islamic scholarship.
+            </p>
+          </div>
+        </div>
+
+        <div class="tl-row reveal d1">
+          <div class="tl-track" aria-hidden="true">
+            <div class="tl-dot"></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="phase">
+            <div class="phase-header">
+              <span class="p-tag">Phase 2</span>
+              <h3>Arabic → Urdu Translation</h3>
+            </div>
+            <p>
+              Expanding the pipeline to Urdu, serving South Asian scholars and learners
+              and respecting the long tradition of Urdu Islamic scholarship.
+            </p>
+          </div>
+        </div>
+
+        <div class="tl-row reveal d2">
+          <div class="tl-track" aria-hidden="true">
+            <div class="tl-dot"></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="phase">
+            <div class="phase-header">
+              <span class="p-tag">Phase 3</span>
+              <h3>Free AI Learning Resources &amp; More Tools</h3>
+            </div>
+            <p>
+              Launching free and low-cost AI education content for underprivileged
+              learners, alongside additional translation tools and further language pairs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" aria-labelledby="contact-h">
+    <div class="contact-box">
+      <span class="eyebrow reveal">Contact</span>
+      <h2 id="contact-h" class="reveal d1">Get in touch</h2>
+      <p class="lead reveal d2">
+        We are in early development and welcome conversations with scholars,
+        researchers, educators, publishers, and anyone who shares our goals.
+      </p>
+      <a
+        href="mailto:ahzamzobairi@psyknight.in"
+        class="contact-link reveal d3"
+        aria-label="Send an email to ahzamzobairi at psyknight.in"
+      >
+        <span aria-hidden="true">✉</span>
+        ahzamzobairi@psyknight.in
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p class="foot-brand">PSYKNIGHT</p>
+    <p>© 2026 PSYKNIGHT · psyknight.in</p>
+    <p>An early-stage Generative AI company — products and content are in development and not yet launched.</p>
+    <p>All content produced by PSYKNIGHT is AI-assisted; nothing has been published as a finished work.</p>
+  </footer>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    'use strict';
+
+    /* Hamburger */
+    const btn  = document.getElementById('hamburger');
+    const menu = document.getElementById('nav-list');
+
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+    });
+
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Open navigation menu');
+    }));
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) {
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.focus();
+      }
+    });
+
+    /* Scroll reveal */
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        entries => entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        }),
+        { threshold: 0.1, rootMargin: '0px 0px -36px 0px' }
+      );
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    }
+  </script>
+
+</body>
+</html>
